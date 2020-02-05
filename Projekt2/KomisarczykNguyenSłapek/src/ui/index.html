@@ -16,6 +16,7 @@
             box-shadow: -2px 0px 5px 0px rgba(176,176,176,1);
             visibility: hidden;
         }
+
         #search {
             position: absolute;
             left: 50%;
@@ -25,6 +26,7 @@
             /*background: rgba(150,150,150,0.5);*/
             padding: 20px;
         }
+
         #search > input {
             height: 40px;
             width: 350px;
@@ -36,6 +38,7 @@
             box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
             border: 1px solid rgba(150, 150, 150, 0.5);
         }
+
         #search > button {
             font-size: 20px;
             background: none;
@@ -111,7 +114,6 @@
             background: rgba(150,150,150,0.8);
             stroke: black;
             stroke-width: 1
-
         }
 
 
@@ -132,9 +134,9 @@
 
 <div id="choice">
     <select name="selector" id="selector" onchange="if (this.selectedIndex) changePlot(this)">
-        <option value="">Select type of graph</option>
-        <option value="1">MiNI</option>
+        <option value="" selected="selected">Select type of graph</option>
         <option value="2">All</option>
+        <option value="1">MiNI</option>
     </select>
 </div>
 
@@ -246,8 +248,8 @@
 
 
     var simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(150))
-        .force("charge", d3.forceManyBody().strength(-100))
+        .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(100))
+        .force("charge", d3.forceManyBody().strength(-200))
         .force("center", d3.forceCenter(parent.offsetWidth / 2, height / 2));
 
     var labelYPostition = function(r) {
@@ -404,7 +406,6 @@
                         return +d.width;
                     });
 
-                //node
                 var node = svg.selectAll(".node")
                     .data(nodesData)
                     .enter()
@@ -699,6 +700,7 @@
 
 
         });
+
     }
 
 
@@ -718,5 +720,7 @@
         d.fx = null;
         d.fy = null;
     }
+
+    changePlot('2');
 
 </script>
